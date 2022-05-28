@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.firebase.FirebaseApp
@@ -58,10 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize Camera Bar
         binding.fab.setOnClickListener { view ->
-            // Take Picture
             camera.takePicture()
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
         }
     }
 
@@ -146,8 +144,11 @@ class MainActivity : AppCompatActivity() {
             if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
                 val bitmap = camera.cameraBitmap
                 if (bitmap != null) {
-                    // Do something with bitmap
-
+                    // Replace image with bitmap
+                    val img: ImageView = findViewById(R.id.imageView)
+                    img.setImageBitmap(bitmap)
+                    println(img.imageAlpha)
+//                    img.setImageBitmap(bitmap)
 
 //                    imageView.setImageBitmap(bitmap)
 //                    detectDeliciousFoodOnDevice(bitmap)
