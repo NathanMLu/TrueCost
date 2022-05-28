@@ -28,10 +28,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
     />
+<!--   Don't delete this >:((((-->
     <ImageView
-            android:layout_width="317dp"
-            android:layout_height="530dp" tools:src="@tools:sample/backgrounds/scenic"
-            android:id="@+id/imageView" tools:layout_editor_absoluteY="100dp" tools:layout_editor_absoluteX="47dp"/>
+            android:layout_width="374dp"
+            android:layout_height="735dp" tools:src="@tools:sample/backgrounds/scenic"
+            android:id="@+id/imageView" tools:layout_editor_absoluteY="-2dp" tools:layout_editor_absoluteX="35dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
