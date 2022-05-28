@@ -9,4 +9,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="error_taking_picture">Error taking picture! Please try again.</string>
+    <string name="permission_message">Please allow camera permissions to take a picture.</string>
+    <string name="permission_storage_rationale">Please allow storage permissions.</string>
+    <string name="picture_not_taken">Error taking picture! Do not exit early.</string>
 </resources>

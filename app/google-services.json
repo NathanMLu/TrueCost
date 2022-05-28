@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "140703488571",
+    "project_id": "truecost-9626b",
+    "storage_bucket": "truecost-9626b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140703488571:android:5f44c60c39799f8266da1e",
+        "android_client_info": {
+          "package_name": "me.natelu.truecost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140703488571-2jj005gr2bdks0tsa6u7tbnqgjsce904.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjNjV-rHbLaUQWLeXNS6AmgSBZyJcvlKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140703488571-2jj005gr2bdks0tsa6u7tbnqgjsce904.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
