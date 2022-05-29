@@ -7,12 +7,70 @@
         android:layout_height="match_parent"
         tools:context=".SecondFragment">
 
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="1000dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/leaves"
+            android:src="@drawable/leaves"
+            android:id="@+id/imageView"
+            android:contentDescription="User Image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="HardcodedText"
+            android:backgroundTint="#000000"/>
+
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="120dp"
+            android:gravity="center|bottom"
+            android:orientation="vertical" tools:layout_editor_absoluteY="-282dp" tools:layout_editor_absoluteX="0dp">
+
+        <Button
+                android:id="@+id/button_first"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Blow Leaves Into Woods"
+                android:background="@drawable/round_button"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+        />
+        <Button
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Mulch the Leaves"
+                android:background="@drawable/round_button"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+        />
+        <Button
+                android:id="@+id/button_second"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Burn the Leaves"
+                android:background="@drawable/round_button"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+
+        />
+    </LinearLayout>
+
     <TextView
             android:id="@+id/responseTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/debug_output"
-            android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -21,31 +79,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:text="Trees prepare for winter by shedding their foliage and going dormant. It’s a lovely sight to see when it happens in forests and other natural areas, but when our lawns and gardens get blanketed by all those leaves, we have some decisions to make. What do you want to do with the leaves?
+"
             tools:text="Debug Output" app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintVertical_bias="0.0"/>
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            tools:src="@drawable/keyboard"
-            android:id="@+id/imageView"
-            android:contentDescription="User Image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="HardcodedText"
-            />
-    <Button
-            android:id="@+id/button_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/previous"
-            />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,27 +6,29 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.util.TypedValue
+import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.View.inflate
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
 import com.mindorks.paracamera.Camera
+import kotlinx.android.synthetic.main.fragment_first.*
 import me.natelu.truecost.databinding.ActivityMainBinding
+import java.security.AccessController.getContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,21 +72,44 @@ class MainActivity : AppCompatActivity() {
             camera.takePicture()
         }
 
+
 //        camera.takePicture()
+    }
+
+    private fun generateButton(content: String, id: Int) {
+        // Defining the actual layout
+//        val linearLayout = findViewById<LinearLayout>(R.id.linearLayout)
+
+        // Creating the button
+        val button = Button(this)
+        button.text = content
+        button.id = id
+
+        // LayoutParams for ActionBar.LayoutParams
+        val dp = 330
+        val px = dp * resources.displayMetrics.density
+        button.layoutParams = LinearLayout.LayoutParams(px.toInt(), LinearLayout.LayoutParams.WRAP_CONTENT)
+
+        // Setting Gravity, Background, Text size, and Text color
+        button.gravity = Gravity.CENTER_HORIZONTAL
+        button.background = resources.getDrawable(R.drawable.round_button)
+        button.setTextColor(Color.BLACK)
+        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16F)
+
+        // Adding the button to the layout
+        val c = findViewById<CoordinatorLayout>(R.id.coordinator)
+        c.addView(button)
     }
 
     fun takePicture(view: View) {
         if (!hasPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
             !hasPermission(android.Manifest.permission.CAMERA)
         ) {
-            // If do not have permissions then request it
             requestPermissions()
         } else {
-            // else all permissions granted, go ahead and take a picture using camera
             try {
                 camera.takePicture()
             } catch (e: Exception) {
-                // Show a toast for exception
                 Toast.makeText(
                     this.applicationContext, getString(R.string.error_taking_picture),
                     Toast.LENGTH_SHORT
@@ -128,7 +153,6 @@ class MainActivity : AppCompatActivity() {
     ) {
         when (requestCode) {
             PERMISSION_REQUEST_CODE -> {
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.isNotEmpty()
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED
@@ -154,7 +178,6 @@ class MainActivity : AppCompatActivity() {
             if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
                 val bitmap = camera.cameraBitmap
                 if (bitmap != null) {
-                    // Replace image with bitmap
                     val img: ImageView = findViewById(R.id.imageView)
                     img.setImageBitmap(bitmap)
                     detectKeyboardOnline(bitmap)

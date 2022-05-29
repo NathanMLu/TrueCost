@@ -57,7 +57,7 @@ class FirstFragment : Fragment() {
 //        }
 
         //make toast and display dictionary
-        Toast.makeText(context, questionsDict.toString(), Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, questionsDict.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
