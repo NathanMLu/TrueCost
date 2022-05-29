@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import me.natelu.truecost.databinding.FragmentFirstBinding
 
@@ -31,15 +32,20 @@ class FirstFragment : Fragment() {
 
     fun test () {
         // get statements from strings.xml
-        val test = getString(R.string.test)
+//        val test = getString(R.string.test)
         val test2 = getString(R.string.test2)
 
-        println(test)
+//        println(test)
         println(test2)
+
+        Toast.makeText(context, test2, Toast.LENGTH_SHORT).show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Call test function
+        test()
 
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)

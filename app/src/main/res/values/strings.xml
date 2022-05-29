@@ -21,6 +21,7 @@
     <string name="not_keyboard">No Keyboard Detected!</string>
     <string name="debug_output">Debug Output</string>
 
-    <string name="test">Hello Justin >:)</string>
+    <string name="question_0_0">how many branches are you</string>
+    <string name="question_0_1">I am a forest!</string>
     <string name="test2">Bye Justin >:(</string>
 </resources>
