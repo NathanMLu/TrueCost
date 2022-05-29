@@ -7,32 +7,44 @@
         android:layout_height="match_parent"
         tools:context=".FirstFragment">
 
-    <TextView
-            android:id="@+id/textview_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_first_fragment"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/button_first"
-    />
+<!--    <TextView-->
+<!--            android:id="@+id/textview_first"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/hello_first_fragment"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:layout_marginTop="4dp"/>-->
+    <!--   Don't delete this >:((((-->
 
     <Button
             android:id="@+id/button_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/next"
-            app:layout_constraintTop_toBottomOf="@id/textview_first"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-    />
-<!--   Don't delete this >:((((-->
+            app:layout_constraintHorizontal_bias="0.947"
+            android:layout_marginBottom="4dp"/>
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1" />
+
     <ImageView
-            android:layout_width="374dp"
-            android:layout_height="735dp" tools:src="@tools:sample/backgrounds/scenic"
-            android:id="@+id/imageView" tools:layout_editor_absoluteY="-2dp" tools:layout_editor_absoluteX="35dp"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/keyboard"
+            android:id="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guideline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            android:layout_marginBottom="116dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
