@@ -17,10 +17,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ml.vision.FirebaseVision
+import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
 import com.mindorks.paracamera.Camera
@@ -48,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             .setDirectory("pics")
             .setName("cost_${System.currentTimeMillis()}")
             .setImageFormat(Camera.IMAGE_JPEG)
-            .setCompression(75)
+            .setCompression(60)
             .build(this)
 
         // Initialize Binding
@@ -153,6 +155,7 @@ class MainActivity : AppCompatActivity() {
                     // Replace image with bitmap
                     val img: ImageView = findViewById(R.id.imageView)
                     img.setImageBitmap(bitmap)
+                    detectKeyboardOnline(bitmap)
                 } else {
                     Toast.makeText(
                         this.applicationContext, getString(R.string.picture_not_taken),
@@ -163,13 +166,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun detectDeliciousFoodOnDevice(bitmap: Bitmap) {
+    private fun detectKeyboard(bitmap: Bitmap) {
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
 
         progressBar.visibility = View.VISIBLE
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionLabelDetectorOptions.Builder()
-            .setConfidenceThreshold(0.8f)
+            .setConfidenceThreshold(0.6f)
             .build()
         val detector = FirebaseVision.getInstance().getVisionLabelDetector(options)
 
@@ -195,25 +198,51 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun hasKeyboard (labels: List<String>): Boolean {
-        for (label in labels) {
-            if (label.contains("keyboard")) {
-                return true
+    private fun detectKeyboardOnline(bitmap: Bitmap) {
+        val image = FirebaseVisionImage.fromBitmap(bitmap)
+        val options = FirebaseVisionCloudDetectorOptions.Builder()
+            .setMaxResults(10)
+            .build()
+        val detector = FirebaseVision.getInstance()
+            //1
+            .getVisionCloudLabelDetector(options)
+
+        detector.detectInImage(image)
+            .addOnSuccessListener {
+                if (hasKeyboard(it.map { it.label.toString() })) {
+                    displayResultMessage(true)
+                } else {
+                    displayResultMessage(false)
+                }
+
             }
-        }
-        return false
+            .addOnFailureListener {
+                Toast.makeText(this.applicationContext, getString(R.string.error),
+                    Toast.LENGTH_SHORT).show()
+
+            }
     }
 
-    private fun displayResultMessage(hasDeliciousFood: Boolean) {
-//        responseCardView.visibility = View.VISIBLE
-//
-//        if (hasDeliciousFood) {
-//            responseCardView.setCardBackgroundColor(Color.GREEN)
-//            responseTextView.text = getString(R.string.keyboard)
-//        } else {
-//            responseCardView.setCardBackgroundColor(Color.RED)
-//            responseTextView.text = getString(R.string.not_keyboard)
+    private fun hasKeyboard (labels: List<String>): Boolean {
+        val responseTextView = findViewById<TextView>(R.id.responseTextView)
+        responseTextView.text = labels.joinToString("\n")
+//        for (label in labels) {
+//            if (label.contains("keyboard")) {
+//                return true
+//            }
 //        }
+        return false
+//        return false
+    }
+
+    private fun displayResultMessage(hasKeyboard: Boolean) {
+        val responseTextView = findViewById<TextView>(R.id.responseTextView)
+
+        if (hasKeyboard) {
+//            responseTextView.text = getString(R.string.keyboard)
+        } else {
+//            responseTextView.text = getString(R.string.not_keyboard)
+        }
     }
 
 
