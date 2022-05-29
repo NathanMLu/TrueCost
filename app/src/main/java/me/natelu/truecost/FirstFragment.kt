@@ -1,5 +1,6 @@
 package me.natelu.truecost
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,11 +42,29 @@ class FirstFragment : Fragment() {
         Toast.makeText(context, test2, Toast.LENGTH_SHORT).show()
     }
 
+    private fun storeQuestions() {
+//        val questionsDictFinal = mutableMapOf<String, MutableList<String>>()
+        val questionsDict = mutableMapOf<String, String>()
+        for (i in 0 until resources.getStringArray(R.array.questions_array).size) {
+            questionsDict["question${i.toString()}"] = resources.getStringArray(R.array.questions_array)[i]
+        }
+
+
+//        for (i in 0 until resources.getStringArray(R.array.questions_array).size) {
+//            val questionsDict = mutableListOf<String>()
+//            questionsDict.add(resources.getStringArray(R.array.questions_array)[i])
+//            questionsDictFinal["question${i.toString()}"] = questionsDict
+//        }
+
+        //make toast and display dictionary
+        Toast.makeText(context, questionsDict.toString(), Toast.LENGTH_SHORT).show()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Call test function
-        test()
+        storeQuestions()
 
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)

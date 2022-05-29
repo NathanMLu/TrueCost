@@ -20,8 +20,11 @@
     <string name="keyboard">Keyboard Detected!</string>
     <string name="not_keyboard">No Keyboard Detected!</string>
     <string name="debug_output">Debug Output</string>
+    <string name="test2">This is a test</string>
+    <string name="question">question</string>
 
-    <string name="question_0_0">how many branches are you</string>
-    <string name="question_0_1">I am a forest!</string>
-    <string name="test2">Bye Justin >:(</string>
+    <string-array name="questions_array">
+        <item>how many branches are you?</item>
+        <item>I am a forest!</item>
+    </string-array>
 </resources>
