@@ -3,6 +3,8 @@ package me.natelu.truecost
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +16,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.firebase.FirebaseApp
+import com.google.firebase.ml.vision.FirebaseVision
+import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
 import com.mindorks.paracamera.Camera
 import me.natelu.truecost.databinding.ActivityMainBinding
 
@@ -147,11 +153,6 @@ class MainActivity : AppCompatActivity() {
                     // Replace image with bitmap
                     val img: ImageView = findViewById(R.id.imageView)
                     img.setImageBitmap(bitmap)
-                    println(img.imageAlpha)
-//                    img.setImageBitmap(bitmap)
-
-//                    imageView.setImageBitmap(bitmap)
-//                    detectDeliciousFoodOnDevice(bitmap)
                 } else {
                     Toast.makeText(
                         this.applicationContext, getString(R.string.picture_not_taken),
@@ -161,6 +162,60 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun detectDeliciousFoodOnDevice(bitmap: Bitmap) {
+        val progressBar: ProgressBar = findViewById(R.id.progressBar)
+
+        progressBar.visibility = View.VISIBLE
+        val image = FirebaseVisionImage.fromBitmap(bitmap)
+        val options = FirebaseVisionLabelDetectorOptions.Builder()
+            .setConfidenceThreshold(0.8f)
+            .build()
+        val detector = FirebaseVision.getInstance().getVisionLabelDetector(options)
+
+        //2
+        detector.detectInImage(image)
+            //3
+            .addOnSuccessListener {
+
+                progressBar.visibility = View.INVISIBLE
+
+                if (hasKeyboard(it.map { it.label.toString() })) {
+                    displayResultMessage(true)
+                } else {
+                    displayResultMessage(false)
+                }
+
+            }//4
+            .addOnFailureListener {
+                progressBar.visibility = View.INVISIBLE
+                Toast.makeText(this.applicationContext, getString(R.string.error),
+                    Toast.LENGTH_SHORT).show()
+
+            }
+    }
+
+    private fun hasKeyboard (labels: List<String>): Boolean {
+        for (label in labels) {
+            if (label.contains("keyboard")) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun displayResultMessage(hasDeliciousFood: Boolean) {
+//        responseCardView.visibility = View.VISIBLE
+//
+//        if (hasDeliciousFood) {
+//            responseCardView.setCardBackgroundColor(Color.GREEN)
+//            responseTextView.text = getString(R.string.keyboard)
+//        } else {
+//            responseCardView.setCardBackgroundColor(Color.RED)
+//            responseTextView.text = getString(R.string.not_keyboard)
+//        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

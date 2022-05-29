@@ -14,4 +14,9 @@
     <string name="permission_message">Please allow camera permissions to take a picture.</string>
     <string name="permission_storage_rationale">Please allow storage permissions.</string>
     <string name="picture_not_taken">Error taking picture! Do not exit early.</string>
+
+    <string name="error">Error.</string>
+
+    <string name="keyboard">Keyboard Detected!</string>
+    <string name="not_keyboard">No Keyboard Detected!</string>
 </resources>
