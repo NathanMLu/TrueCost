@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorPrimaryVariant"
+        android:background="?attr/backgroundColor"
         tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,7 +17,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="?attr/colorAccent"
+                app:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:popupTheme="@style/Theme.TrueCost.PopupOverlay"/>
 
     </com.google.android.material.appbar.AppBarLayout>
