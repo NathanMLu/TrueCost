@@ -21,6 +21,8 @@ class FirstFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val questionsDictFinal = mutableMapOf<String, MutableList<String>>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,33 +44,45 @@ class FirstFragment : Fragment() {
         Toast.makeText(context, test2, Toast.LENGTH_SHORT).show()
     }
 
-    private fun storeQuestions() {
-//        val questionsDictFinal = mutableMapOf<String, MutableList<String>>()
-        val questionsDict = mutableMapOf<String, String>()
-        for (i in 0 until resources.getStringArray(R.array.questions_array).size) {
-            questionsDict["question${i.toString()}"] = resources.getStringArray(R.array.questions_array)[i]
+    private fun setQuestions(name: String, questions: Array<String>){
+
+        for (i in questions.indices - 1) {
+            questionsDictFinal[name] = questions.toMutableList()
         }
 
+        Toast.makeText(context, questionsDictFinal.toString(), Toast.LENGTH_SHORT).show()
 
-//        for (i in 0 until resources.getStringArray(R.array.questions_array).size) {
-//            val questionsDict = mutableListOf<String>()
-//            questionsDict.add(resources.getStringArray(R.array.questions_array)[i])
-//            questionsDictFinal["question${i.toString()}"] = questionsDict
-//        }
+    }
+
+    private fun getQuestions(key: String): MutableList<String> {
+        val questions = mutableListOf<String>()
+
+        for (i in questionsDictFinal.keys) {
+            if (i == key) {
+                questions.addAll(questionsDictFinal[i]!!)
+            }
+        }
+
+        if (questions.isEmpty()) {
+            Toast.makeText(context, "No questions found", Toast.LENGTH_SHORT).show()
+        } else{
+            Toast.makeText(context, questions.toString(), Toast.LENGTH_SHORT).show()
+        }
+
+        return questions
 
         //make toast and display dictionary
 //        Toast.makeText(context, questionsDict.toString(), Toast.LENGTH_SHORT).show()
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Call test function
-        storeQuestions()
 
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
     }
 
     override fun onDestroyView() {

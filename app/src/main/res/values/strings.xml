@@ -22,7 +22,7 @@
     <string name="debug_output"> </string>
     <string name="question">question</string>
 
-    <string-array name="questions_array">
+    <string-array name="tree">
         <item>how many branches are you?</item>
         <item>I am a forest!</item>
     </string-array>
