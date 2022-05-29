@@ -20,4 +20,7 @@
     <string name="keyboard">Keyboard Detected!</string>
     <string name="not_keyboard">No Keyboard Detected!</string>
     <string name="debug_output">Debug Output</string>
+
+    <string name="test">Hello Justin >:)</string>
+    <string name="test2">Bye Justin >:(</string>
 </resources>

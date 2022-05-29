@@ -29,6 +29,15 @@ class FirstFragment : Fragment() {
 
     }
 
+    fun test () {
+        // get statements from strings.xml
+        val test = getString(R.string.test)
+        val test2 = getString(R.string.test2)
+
+        println(test)
+        println(test2)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
