@@ -19,4 +19,5 @@
 
     <string name="keyboard">Keyboard Detected!</string>
     <string name="not_keyboard">No Keyboard Detected!</string>
+    <string name="debug_output">Debug Output</string>
 </resources>

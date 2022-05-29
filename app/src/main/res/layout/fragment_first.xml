@@ -25,9 +25,9 @@
             android:text="@string/next"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.947"
-            android:layout_marginBottom="4dp"/>
+            android:gravity="center"
+
+    />
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -35,16 +35,36 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="1" />
 
-    <ImageView
-            android:layout_width="0dp"
+    <TextView
+            android:id="@+id/responseTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/debug_output"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Debug Output" app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintVertical_bias="0.0"/>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             tools:src="@drawable/keyboard"
             android:id="@+id/imageView"
+            android:contentDescription="User Image"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/guideline"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            android:layout_marginBottom="116dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="HardcodedText"
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
