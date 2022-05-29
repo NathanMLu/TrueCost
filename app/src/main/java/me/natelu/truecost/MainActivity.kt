@@ -69,6 +69,8 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view ->
             camera.takePicture()
         }
+
+//        camera.takePicture()
     }
 
     fun takePicture(view: View) {
@@ -167,21 +169,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun detectKeyboard(bitmap: Bitmap) {
-        val progressBar: ProgressBar = findViewById(R.id.progressBar)
-
-        progressBar.visibility = View.VISIBLE
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionLabelDetectorOptions.Builder()
             .setConfidenceThreshold(0.6f)
             .build()
         val detector = FirebaseVision.getInstance().getVisionLabelDetector(options)
 
-        //2
         detector.detectInImage(image)
-            //3
-            .addOnSuccessListener {
 
-                progressBar.visibility = View.INVISIBLE
+            .addOnSuccessListener {
 
                 if (hasKeyboard(it.map { it.label.toString() })) {
                     displayResultMessage(true)
@@ -189,11 +185,12 @@ class MainActivity : AppCompatActivity() {
                     displayResultMessage(false)
                 }
 
-            }//4
+            }
             .addOnFailureListener {
-                progressBar.visibility = View.INVISIBLE
-                Toast.makeText(this.applicationContext, getString(R.string.error),
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this.applicationContext, getString(R.string.error),
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
     }
@@ -204,7 +201,6 @@ class MainActivity : AppCompatActivity() {
             .setMaxResults(10)
             .build()
         val detector = FirebaseVision.getInstance()
-            //1
             .getVisionCloudLabelDetector(options)
 
         detector.detectInImage(image)
@@ -217,13 +213,15 @@ class MainActivity : AppCompatActivity() {
 
             }
             .addOnFailureListener {
-                Toast.makeText(this.applicationContext, getString(R.string.error),
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this.applicationContext, getString(R.string.error),
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
     }
 
-    private fun hasKeyboard (labels: List<String>): Boolean {
+    private fun hasKeyboard(labels: List<String>): Boolean {
         val responseTextView = findViewById<TextView>(R.id.responseTextView)
         responseTextView.text = labels.joinToString("\n")
 //        for (label in labels) {
